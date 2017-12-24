@@ -5,7 +5,7 @@ ENV NODE_VERSION=v8.9.3 NPM_VERSION=5
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/v3.2/main" >> /etc/apk/repositories && \
 	apk add --update git curl make gcc g++ python linux-headers libgcc libstdc++ binutils-gold && \
-	curl -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.gz | tar -xz && \
+	cd / && curl -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.gz | tar -xz && \
 	cd /node-${NODE_VERSION} && \
 	./configure --prefix=/usr --without-snapshot && \
 	make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
